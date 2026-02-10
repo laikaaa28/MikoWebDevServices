@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Template - Bespoke Web Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Raleway:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest: #1e3a2f;
+            --sage: #8ba888;
+            --ivory: #f9f6f1;
+            --bronze: #b7956a;
+            --charcoal: #2c2c2c;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--charcoal);
+            background: var(--ivory);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
+            color: var(--forest);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: var(--forest);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--sage);
+        }
+
+        .contact-btn {
+            padding: 0.8rem 2rem;
+            background: var(--forest);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--sage);
+        }
+
+        /* Hero */
+        .hero {
+            height: 85vh;
+            background: 
+                linear-gradient(rgba(30, 58, 47, 0.7), rgba(30, 58, 47, 0.7)),
+                linear-gradient(135deg, var(--forest) 0%, var(--sage) 100%);
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 1rem;
+        }
+
+        .search-form select,
+        .search-form input {
+            padding: 1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 4px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+        }
+
+        .search-form select:focus,
+        .search-form input:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        .search-btn {
+            padding: 1rem 2.5rem;
+            background: var(--forest);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--sage);
+        }
+
+        /* Featured Listings */
+        .listings {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+        }
+
+        .listings-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .listing-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%);
+            position: relative;
+        }
+
+        .listing-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bronze);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .listing-info {
+            padding: 2rem;
+        }
+
+        .listing-price {
+            font-size: 2rem;
+            color: var(--forest);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Lora', serif;
+        }
+
+        .listing-address {
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .listing-features {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--ivory);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--sage), var(--forest));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--charcoal);
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 6rem 2rem;
+            background: var(--forest);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--bronze);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #d4ab7a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(183, 149, 106, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--sage);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-section a:hover {
+            color: var(--sage);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">Prestige Properties</a>
+            <nav>
+                <ul>
+                    <li><a href="#listings">Listings</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="contact-btn">Schedule Viewing</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Home</h1>
+            <p>Discover exceptional properties in the most sought-after locations</p>
+            <div class="search-box">
+                <form class="search-form">
+                    <select>
+                        <option>Property Type</option>
+                        <option>House</option>
+                        <option>Apartment</option>
+                        <option>Condo</option>
+                        <option>Townhouse</option>
+                    </select>
+                    <select>
+                        <option>Location</option>
+                        <option>Downtown</option>
+                        <option>Suburbs</option>
+                        <option>Waterfront</option>
+                        <option>Country</option>
+                    </select>
+                    <input type="text" placeholder="Price Range">
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="listings" id="listings">
+        <div class="section-header">
+            <h2>Featured Properties</h2>
+            <p>Handpicked selections from our premium portfolio</p>
+        </div>
+        <div class="listings-grid">
+            <div class="listing-card">
+                <div class="listing-image">
+                    <span class="listing-badge">For Sale</span>
+                </div>
+                <div class="listing-info">
+                    <div class="listing-price">$1,250,000</div>
+                    <div class="listing-address">425 Oak Valley Drive, Riverside Heights</div>
+                    <div class="listing-features">
+                        <div class="feature">
+                            <span class="feature-icon">🛏️</span>
+                            <span>4 Beds</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🚿</span>
+                            <span>3 Baths</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📐</span>
+                            <span>3,200 sqft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-card">
+                <div class="listing-image">
+                    <span class="listing-badge">New Listing</span>
+                </div>
+                <div class="listing-info">
+                    <div class="listing-price">$895,000</div>
+                    <div class="listing-address">182 Lakeview Terrace, Waterside District</div>
+                    <div class="listing-features">
+                        <div class="feature">
+                            <span class="feature-icon">🛏️</span>
+                            <span>3 Beds</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🚿</span>
+                            <span>2.5 Baths</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📐</span>
+                            <span>2,400 sqft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-card">
+                <div class="listing-image">
+                    <span class="listing-badge">For Sale</span>
+                </div>
+                <div class="listing-info">
+                    <div class="listing-price">$2,100,000</div>
+                    <div class="listing-address">67 Heritage Lane, Historic Quarter</div>
+                    <div class="listing-features">
+                        <div class="feature">
+                            <span class="feature-icon">🛏️</span>
+                            <span>5 Beds</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🚿</span>
+                            <span>4 Baths</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📐</span>
+                            <span>4,500 sqft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive real estate solutions tailored to your needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Buying</h3>
+                <p>Expert guidance through every step of purchasing your perfect property</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3>Selling</h3>
+                <p>Maximize your property value with our proven marketing strategies</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔑</div>
+                <h3>Property Management</h3>
+                <p>Professional management services to protect your investment</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Find Your Home?</h2>
+            <p>Let our experienced team help you navigate the real estate market with confidence</p>
+            <a href="#contact" class="cta-btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Prestige Properties</h4>
+                <p>Your trusted partner in luxury real estate. With over 20 years of experience serving our community.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#listings">Browse Listings</a><br>
+                <a href="#services">Our Services</a><br>
+                <a href="#about">About Us</a><br>
+                <a href="#">Careers</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>456 Main Street<br>
+                Suite 200<br>
+                Your City, State 12345<br>
+                (555) 123-4567<br>
+                info@prestigeproperties.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Prestige Properties. All rights reserved. | Template by Bespoke Web Studio</p>
+        </div>
+    </footer>
+</body>
+</html>

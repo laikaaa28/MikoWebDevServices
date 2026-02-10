@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Business Template - Bespoke Web Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a2540;
+            --slate: #425466;
+            --cream: #f7f4ed;
+            --gold: #c5a572;
+            --white: #ffffff;
+            --shadow: rgba(10, 37, 64, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--slate);
+            line-height: 1.7;
+            background: var(--cream);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(66, 84, 102, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--slate);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 2rem 6rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(197, 165, 114, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--slate);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--navy);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .hero-cta:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px var(--shadow);
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--cream);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out backwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px var(--shadow);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            line-height: 1.7;
+        }
+
+        /* About */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--navy);
+            color: white;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about h2 {
+            color: white;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .about p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            border: 1px solid rgba(197, 165, 114, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 30px var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 4rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Excellence Corp</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transforming Ideas Into Strategic Solutions</h1>
+            <p>We partner with ambitious organizations to deliver exceptional results through innovative thinking and meticulous execution.</p>
+            <a href="#contact" class="hero-cta">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Our Expertise</h2>
+        <p class="section-subtitle">Comprehensive solutions tailored to your business objectives</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Strategic Consulting</h3>
+                <p>Data-driven insights and strategic planning to accelerate your growth and maximize market opportunities.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Brand Development</h3>
+                <p>Build a powerful brand identity that resonates with your audience and stands out in competitive markets.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Digital Transformation</h3>
+                <p>Modernize your operations with cutting-edge technology solutions designed for sustainable success.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div>
+                <h2>Proven Excellence Since 2010</h2>
+                <p>We bring together industry expertise, innovative methodologies, and a commitment to exceptional client outcomes. Our team has delivered transformative results for organizations ranging from startups to Fortune 500 companies.</p>
+                <p>Every engagement is an opportunity to exceed expectations and create lasting value. We don't just solve problems—we build partnerships that drive sustained success.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Client Retention</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Team Members</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-subtitle">Ready to elevate your business? Get in touch with our team.</p>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="message">How can we help you?</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Excellence Corp. All rights reserved. | Template by Bespoke Web Studio</p>
+    </footer>
+</body>
+</html>

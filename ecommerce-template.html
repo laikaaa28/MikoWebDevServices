@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Template - Bespoke Web Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0f0f0f;
+            --charcoal: #2a2a2a;
+            --sand: #e8e4dc;
+            --terracotta: #d4725b;
+            --sage: #a8b5a0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--charcoal);
+            background: var(--sand);
+        }
+
+        h1, h2, h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--black);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            background: var(--black);
+            color: white;
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .header-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--terracotta);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sand) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 114, 91, 0.2), transparent);
+            top: -250px;
+            left: -250px;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: var(--charcoal);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--black);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary:hover {
+            background: var(--terracotta);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Featured Products */
+        .featured {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header p {
+            color: var(--charcoal);
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            aspect-ratio: 1;
+            background: var(--sand);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--terracotta) 100%);
+            opacity: 0.7;
+            transition: opacity 0.4s;
+        }
+
+        .product-card:hover .product-image::before {
+            opacity: 0.85;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            z-index: 10;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--black);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--terracotta);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: var(--black);
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            color: white;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--sage);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.8);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--terracotta);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.6;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-main {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .header-actions {
+                justify-content: center;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            Free Shipping on Orders Over $50 | Shop Now
+        </div>
+        <div class="header-main">
+            <a href="#" class="logo">Artisan & Co</a>
+            <nav>
+                <ul>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#new">New Arrivals</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn">🔍</button>
+                <button class="icon-btn">👤</button>
+                <button class="icon-btn">
+                    🛒
+                    <span class="cart-count">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Crafted With Care,<br>Made to Last</h1>
+        <p>Discover our curated collection of artisan-made products that blend timeless design with modern sustainability.</p>
+        <a href="#shop" class="btn-primary">Explore Collection</a>
+    </section>
+
+    <section class="featured" id="shop">
+        <div class="section-header">
+            <h2>Featured Products</h2>
+            <p>Handpicked essentials for everyday living</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Home Decor</div>
+                    <h3>Ceramic Vase Set</h3>
+                    <div class="product-price">$89.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Textiles</div>
+                    <h3>Linen Throw Blanket</h3>
+                    <div class="product-price">$125.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"></div>
+                <div class="product-info">
+                    <div class="product-category">Kitchen</div>
+                    <h3>Handcrafted Cutting Board</h3>
+                    <div class="product-price">$68.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Lighting</div>
+                    <h3>Brass Table Lamp</h3>
+                    <div class="product-price">$215.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join Our Community</h2>
+            <p>Be the first to know about new arrivals, exclusive offers, and design inspiration.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <a href="#">New Arrivals</a>
+                <a href="#">Bestsellers</a>
+                <a href="#">Sale</a>
+                <a href="#">Gift Cards</a>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Artisans</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">FAQs</a>
+                <a href="#">Size Guide</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Facebook</a>
+                <a href="#">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Artisan & Co. All rights reserved. | Template by Bespoke Web Studio</p>
+        </div>
+    </footer>
+</body>
+</html>

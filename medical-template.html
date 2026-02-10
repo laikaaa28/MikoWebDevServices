@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Template - Bespoke Web Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean: #0891b2;
+            --navy: #0c4a6e;
+            --sky: #e0f2fe;
+            --mint: #6ee7b7;
+            --slate: #475569;
+            --white: #ffffff;
+            --light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--slate);
+            line-height: 1.7;
+            background: var(--light);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--navy);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: var(--ocean);
+            color: white;
+            padding: 0.7rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-top-info {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .header-top-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-btn {
+            background: var(--mint);
+            color: var(--navy);
+            padding: 0.4rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .header-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--slate);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--ocean);
+        }
+
+        .appointment-btn {
+            padding: 0.9rem 2rem;
+            background: var(--ocean);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .appointment-btn:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--sky) 0%, white 100%);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(8, 145, 178, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--slate);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--ocean);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--ocean);
+            font-family: 'Merriweather', serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--slate);
+            margin-top: 0.5rem;
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--sky);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--ocean);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-left-color: var(--mint);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            line-height: 1.7;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            padding: 6rem 2rem;
+            background: var(--navy);
+            color: white;
+        }
+
+        .why-choose-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .why-choose h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .why-choose p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .features-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--ocean);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-item h4 {
+            color: white;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--slate);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--sky);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h5 {
+            color: var(--navy);
+            margin-bottom: 0.2rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--sky);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-details h4 {
+            font-family: 'Open Sans', sans-serif;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-form {
+            background: var(--sky);
+            padding: 2.5rem;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid transparent;
+            background: white;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--ocean);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.1rem;
+            background: var(--ocean);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--mint);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-section a:hover {
+            color: var(--mint);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .header-top-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .header-main {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-content,
+            .why-choose-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-top-info">
+                <span>📞 (555) 234-5678</span>
+                <span>📍 123 Medical Center Dr, Suite 100</span>
+                <span>🕐 Mon-Fri: 8am-6pm</span>
+            </div>
+            <button class="emergency-btn">24/7 Emergency</button>
+        </div>
+        <div class="header-main">
+            <a href="#" class="logo">HealthFirst</a>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="appointment-btn">Book Appointment</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Comprehensive Healthcare for Your Entire Family</h1>
+                <p>Providing compassionate, personalized medical care with state-of-the-art facilities and experienced professionals.</p>
+                <a href="#contact" class="hero-cta">Schedule Your Visit</a>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Serving</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">25K+</div>
+                        <div class="stat-label">Patients Treated</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Medical Services</h2>
+            <p>Comprehensive care across multiple specialties</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">👨‍⚕️</div>
+                <h3>Primary Care</h3>
+                <p>Preventive care, health screenings, and treatment for acute and chronic conditions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👶</div>
+                <h3>Pediatrics</h3>
+                <p>Complete healthcare for children from infancy through adolescence.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">❤️</div>
+                <h3>Cardiology</h3>
+                <p>Expert diagnosis and treatment of heart and cardiovascular conditions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🦴</div>
+                <h3>Orthopedics</h3>
+                <p>Specialized care for bones, joints, muscles, and sports injuries.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Mental Health</h3>
+                <p>Counseling, therapy, and psychiatric services for emotional wellbeing.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💉</div>
+                <h3>Preventive Care</h3>
+                <p>Vaccinations, health screenings, and wellness programs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose">
+        <div class="why-choose-content">
+            <div>
+                <h2>Why Choose HealthFirst?</h2>
+                <p>We're committed to providing exceptional healthcare with a personal touch. Our team of experienced physicians and staff are dedicated to your wellbeing.</p>
+            </div>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">⭐</div>
+                    <div>
+                        <h4>Board-Certified Physicians</h4>
+                        <p>Highly qualified doctors with specialized training</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏥</div>
+                    <div>
+                        <h4>Modern Facilities</h4>
+                        <p>State-of-the-art equipment and comfortable environment</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <div>
+                        <h4>Patient-Centered Care</h4>
+                        <p>Personalized treatment plans tailored to your needs</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div>
+                        <h4>Easy Online Booking</h4>
+                        <p>Schedule appointments conveniently online 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2>What Our Patients Say</h2>
+            <p>Real stories from real people</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The care I received was outstanding. The staff was friendly and professional, and Dr. Smith took the time to answer all my questions. Highly recommended!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👤</div>
+                    <div class="author-info">
+                        <h5>Sarah Johnson</h5>
+                        <p>Patient since 2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"HealthFirst has been caring for my entire family for years. We trust them completely with our healthcare needs. The facilities are modern and clean."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👤</div>
+                    <div class="author-info">
+                        <h5>Michael Chen</h5>
+                        <p>Patient since 2019</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I appreciate how easy it is to schedule appointments online. The doctors are knowledgeable and truly care about their patients' wellbeing."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👤</div>
+                    <div class="author-info">
+                        <h5>Emily Rodriguez</h5>
+                        <p>Patient since 2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>Have questions or need to schedule an appointment? We're here to help.</p>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h4>Phone</h4>
+                        <p>(555) 234-5678</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div class="info-details">
+                        <h4>Email</h4>
+                        <p>info@healthfirst.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-details">
+                        <h4>Address</h4>
+                        <p>123 Medical Center Drive<br>Suite 100, Your City, State 12345</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Needed</label>
+                    <select id="service" required>
+                        <option>Select a service</option>
+                        <option>Primary Care</option>
+                        <option>Pediatrics</option>
+                        <option>Cardiology</option>
+                        <option>Orthopedics</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HealthFirst Medical</h4>
+                <p>Providing compassionate, comprehensive healthcare to our community for over 15 years.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#services">Services</a><br>
+                <a href="#about">About Us</a><br>
+                <a href="#testimonials">Testimonials</a><br>
+                <a href="#">Patient Portal</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Office Hours</h4>
+                <p>Monday - Friday: 8:00 AM - 6:00 PM<br>
+                Saturday: 9:00 AM - 2:00 PM<br>
+                Sunday: Closed<br>
+                Emergency: 24/7</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HealthFirst Medical Center. All rights reserved. | Template by Bespoke Web Studio</p>
+        </div>
+    </footer>
+</body>
+</html>

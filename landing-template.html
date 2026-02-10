@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Template - Bespoke Web Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Fraunces:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --electric: #6366f1;
+            --deep: #1e1b4b;
+            --sky: #e0e7ff;
+            --lime: #84cc16;
+            --pearl: #f8fafc;
+            --charcoal: #334155;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--charcoal);
+            background: var(--pearl);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fraunces', serif;
+            color: var(--deep);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep) 0%, var(--electric) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(132, 204, 22, 0.2), transparent);
+            top: -400px;
+            right: -400px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(132, 204, 22, 0.2);
+            color: var(--lime);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--lime);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--lime), #a3e635);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--lime);
+            color: var(--deep);
+            box-shadow: 0 10px 40px rgba(132, 204, 22, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #a3e635;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(132, 204, 22, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--deep);
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--sky);
+            border-radius: 20px;
+            transition: all 0.4s;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+            background: var(--electric);
+        }
+
+        .feature-card:hover h3,
+        .feature-card:hover p {
+            color: white;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            line-height: 1.7;
+            color: var(--charcoal);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 5rem 2rem;
+            background: var(--deep);
+            text-align: center;
+        }
+
+        .social-proof h2 {
+            color: white;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            font-weight: 900;
+        }
+
+        .stats {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--lime);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Fraunces', serif;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--electric) 0%, var(--deep) 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            color: white;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+        }
+
+        .signup-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .signup-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .signup-form input:focus {
+            outline: none;
+        }
+
+        .signup-form button {
+            padding: 1rem 2.5rem;
+            background: var(--lime);
+            color: var(--deep);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .signup-form button:hover {
+            background: #a3e635;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 90vh;
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .features,
+            .social-proof,
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .signup-form {
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 20px;
+            }
+
+            .signup-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">🚀 Launching Soon</div>
+            <h1>Transform Your Workflow with <span>AI-Powered Tools</span></h1>
+            <p>Join thousands of professionals who have already revolutionized their productivity with our cutting-edge platform.</p>
+            <div class="cta-group">
+                <a href="#signup" class="btn btn-primary">Get Early Access</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>Everything You Need to Succeed</h2>
+            <p>Powerful features designed to supercharge your productivity</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Experience blazing speeds with our optimized infrastructure built for performance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Ultra Secure</h3>
+                <p>Enterprise-grade security ensures your data is always protected and private.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Smart Automation</h3>
+                <p>AI-powered automation handles repetitive tasks so you can focus on what matters.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <h2>Trusted by Industry Leaders</h2>
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Active Users</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">99.9%</span>
+                <span class="stat-label">Uptime</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">4.9★</span>
+                <span class="stat-label">User Rating</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="signup">
+        <div class="cta-content">
+            <h2>Ready to Get Started?</h2>
+            <p>Join our waitlist and be among the first to experience the future of productivity.</p>
+            <form class="signup-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Join Waitlist</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 InnovateTech. All rights reserved. | Template by Bespoke Web Studio</p>
+    </footer>
+</body>
+</html>

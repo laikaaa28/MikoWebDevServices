@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio Template - Bespoke Web Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #1a1a1a;
+            --paper: #fdfcf8;
+            --crimson: #dc143c;
+            --slate: #708090;
+            --offwhite: #f5f5f0;
+        }
+
+        body {
+            font-family: 'Archivo', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--paper);
+            z-index: 1000;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .nav-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            position: relative;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: var(--crimson);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 3rem;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    var(--offwhite) 2px,
+                    var(--offwhite) 4px
+                );
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            color: var(--ink);
+            text-transform: uppercase;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--crimson);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--crimson);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            transition: all 0.3s;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .hero-cta:hover {
+            background: var(--ink);
+            transform: translateX(10px);
+        }
+
+        /* Work Grid */
+        .work {
+            padding: 6rem 3rem;
+            background: white;
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--slate);
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .gallery {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid var(--paper);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--crimson) 0%, var(--ink) 100%);
+            z-index: 1;
+            transition: opacity 0.4s;
+            opacity: 0.9;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 0.7;
+        }
+
+        .gallery-item::after {
+            content: attr(data-category);
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: white;
+            color: var(--ink);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            z-index: 3;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .gallery-overlay p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* About */
+        .about {
+            padding: 6rem 3rem;
+            background: var(--ink);
+            color: white;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 2rem;
+            color: var(--crimson);
+            text-transform: uppercase;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.5rem;
+            border-left: 3px solid var(--crimson);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 6rem 3rem;
+            background: var(--offwhite);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--slate);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: var(--slate);
+        }
+
+        .contact-item a {
+            font-size: 1.3rem;
+            color: var(--crimson);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            color: var(--ink);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: white;
+            padding: 2rem 3rem;
+            text-align: center;
+            border-top: 3px solid var(--crimson);
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .work,
+            .about,
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">STARK</a>
+            <ul class="nav-menu">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Creative<br>
+                <span>Director</span><br>
+                & Designer
+            </h1>
+            <p>Crafting bold visual experiences that push boundaries and challenge conventions. Based in the intersection of art and commerce.</p>
+            <a href="#work" class="hero-cta">View My Work</a>
+        </div>
+    </section>
+
+    <section class="work" id="work">
+        <h2 class="section-title">Selected Works</h2>
+        <p class="section-subtitle">Recent Projects</p>
+        <div class="gallery">
+            <div class="gallery-item" data-category="Branding">
+                <div class="gallery-overlay">
+                    <h3>Fusion Cafe</h3>
+                    <p>Complete brand identity and packaging design</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="Editorial">
+                <div class="gallery-overlay">
+                    <h3>Modern Atlas</h3>
+                    <p>Magazine layout and art direction</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="Digital">
+                <div class="gallery-overlay">
+                    <h3>Apex Tech</h3>
+                    <p>Website design and development</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="Campaign">
+                <div class="gallery-overlay">
+                    <h3>Urban Pulse</h3>
+                    <p>Multi-channel marketing campaign</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="Packaging">
+                <div class="gallery-overlay">
+                    <h3>Luxe Cosmetics</h3>
+                    <p>Premium product packaging series</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="Identity">
+                <div class="gallery-overlay">
+                    <h3>Nova Studios</h3>
+                    <p>Brand strategy and visual system</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div>
+                <h2>About Me</h2>
+                <p>I'm a creative director and designer with over a decade of experience creating impactful visual communications for brands around the world.</p>
+                <p>My work spans branding, editorial design, digital experiences, and everything in between. I believe in the power of bold ideas executed with precision and craft.</p>
+                <p>Currently accepting select projects for 2026.</p>
+            </div>
+            <div class="skills-list">
+                <div class="skill-item">Brand Identity</div>
+                <div class="skill-item">Art Direction</div>
+                <div class="skill-item">Editorial Design</div>
+                <div class="skill-item">Packaging</div>
+                <div class="skill-item">Digital Design</div>
+                <div class="skill-item">Typography</div>
+                <div class="skill-item">Photography</div>
+                <div class="skill-item">Strategy</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Let's Work Together</h2>
+            <p>Available for freelance projects and collaborations</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:hello@stark.design">hello@stark.design</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Instagram</h3>
+                    <a href="#">@stark.studio</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="#">/in/starkdesign</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Stark Creative Studio. All rights reserved. | Template by Bespoke Web Studio</p>
+    </footer>
+</body>
+</html>
